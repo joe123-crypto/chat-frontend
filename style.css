@@ -26,19 +26,19 @@ body {
 /* Main content area styles */
 .main-content {
   flex: 1;
-  align-items: center;
   display: flex;
   flex-direction: column;
   position: relative;
   background: #111;
+  margin:64px;
 }
 
 /* Bottom bar at the bottom of the main content */
 .bottom-bar {
   position: absolute;
   left: 50%;
+  top:50%;
   transform: translateX(-50%);
-  bottom: 24px;
   margin: 0 auto;
   display: block;
   flex-direction: row;
@@ -75,6 +75,8 @@ body {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  margin-left:0px;
+  margin-right:auto;
 }
 
 /* Plus-circle icon styles */
@@ -160,7 +162,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  margin-left: 8px;
+  margin-left: auto;
   border: none;
   box-shadow: 0 1px 4px rgba(0,0,0,0.10);
   transition: background 0.18s;
@@ -200,6 +202,7 @@ body {
   .main-content {
     width: 100vw !important;
     padding-left: 0 !important;
+    margin:64px !important;
   }
   .bottom-bar {
     flex-direction: column;
@@ -207,7 +210,7 @@ body {
     padding: 12px 8px;
     gap: 10px;
     min-width: 0;
-    width: 99vw;
+    /*width: 99vw;*/
     max-width: 99vw;
   }
   .bar-left {
