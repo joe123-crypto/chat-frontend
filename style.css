@@ -1,3 +1,4 @@
+/* General body styles for background, font, and color */
 body {
   margin: 0;
   padding: 0;
@@ -6,11 +7,13 @@ body {
   font-family: system-ui, 'Segoe UI', Arial, sans-serif;
 }
 
+/* Main container uses flex layout to arrange sidebar and main content */
 .container {
   display: flex;
   height: 100vh;
 }
 
+/* Sidebar styles (left panel) */
 .sidebar {
   width: 260px;
   background: #181818;
@@ -20,6 +23,7 @@ body {
   border-right: 1px solid #222;
 }
 
+/* Main content area styles */
 .main-content {
   flex: 1;
   align-items: center;
@@ -29,6 +33,7 @@ body {
   background: #111;
 }
 
+/* Bottom bar at the bottom of the main content */
 .bottom-bar {
   position: absolute;
   left: 50%;
@@ -49,7 +54,12 @@ body {
   height: 103px;
   justify-content: flex-start;
 }
-
+.bar-bottom {
+  display:flex;
+  flex-direction:row;
+  margin:3px;
+}
+/* Left section of the bar (currently unused, yellow for debug) */
 .bar-left {
   display: flex;
   align-items: center;
@@ -59,6 +69,7 @@ body {
   color:yellow;
 }
 
+/* Controls section in the bottom bar */
 .bar-controls {
   display: flex;
   align-items: center;
@@ -66,6 +77,7 @@ body {
   flex-wrap: wrap;
 }
 
+/* Plus-circle icon styles */
 .plus-circle {
   width: 32px;
   height: 32px;
@@ -80,16 +92,21 @@ body {
   margin-right: 4px;
 }
 
+/* Prompt text styles */
 .prompt {
   margin: 0 16px 0 8px;
   flex: 1;
+  background-color: inherit;
   color: #fff;
+  /*color: #fff;*/
   font-size: 1.08rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: none
 }
 
+/* Action button styles for controls */
 .action-btn {
   min-width: 0;
   height: 40px;
@@ -115,6 +132,7 @@ body {
   cursor: not-allowed;
 }
 
+/* Storyboard button styles */
 .storyboard-btn {
   background: #fff;
   color: #222;
@@ -131,6 +149,7 @@ body {
   background: #f3f3f3;
 }
 
+/* Send button (arrow) styles */
 .send-btn {
   background: #fff;
   color: #222;
@@ -154,6 +173,7 @@ body {
   font-size: 1.1rem;
 }
 
+/* Status dot indicator styles */
 .dot {
   width: 8px;
   height: 8px;
@@ -164,9 +184,11 @@ body {
   align-self: center;
 }
 
+/* Hide unused legacy classes */
 /* Remove old styles for prompt-group, right-group, actions, bottom-bar-wrapper */
 .prompt-group, .right-group, .actions, .bottom-bar-wrapper { display: none !important; }
 
+/* Responsive styles for mobile screens */
 @media (max-width: 700px) {
   .sidebar {
     width: 0 !important;
