@@ -30,14 +30,22 @@ body {
   flex-direction: column;
   position: relative;
   background: #111;
-  margin:64px;
+  margin: 50px;
 }
 
+#container{
+  height: 32vh;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /* Bottom bar at the bottom of the main content */
 .bottom-bar {
   position: absolute;
   left: 50%;
-  top:50%;
+  top:25%;
   transform: translateX(-50%);
   margin: 0 auto;
   display: block;
@@ -100,12 +108,29 @@ body {
   flex: 1;
   background-color: inherit;
   color: #fff;
-  /*color: #fff;*/
   font-size: 1.08rem;
-  white-space: nowrap;
+  font-family: 'Poppins', 'Inter', system-ui, Arial, sans-serif;
+  white-space: pre-wrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  border: none
+  resize: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  min-height: 40px;
+  max-height: 9px;
+  transition: font-size 0.18s, background 0.18s, color 0.18s;
+  border-radius: 10px;
+  padding: 12px 16px;
+  line-height: 1.5;
+  width: 100%;
+  display: block;
+}
+.prompt:focus {
+  outline: none;
+  box-shadow: none;
+  font-size: 1.22rem;
+  background: #181818;
+  color: #fff;
 }
 
 /* Action button styles for controls */
@@ -186,19 +211,100 @@ body {
   align-self: center;
 }
 
+/* Status indicator styles */
+.status-indicator {
+  position: absolute;
+  left: 50%;
+  /*bottom: 120px;*/
+  transform: translateX(-50%);
+  /*background: rgba(30, 30, 30, 0.92);*/
+  color: #fff;
+  font-family: 'Poppins', 'Inter', system-ui, Arial, sans-serif;
+  font-size: 1.08rem;
+  z-index: 2000;
+  text-align: center;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  min-width: 120px;
+  opacity: 0.96;
+  transition: background 0.18s, color 0.18s, opacity 0.18s;
+  pointer-events: none;
+}
+
 /* Hide unused legacy classes */
 /* Remove old styles for prompt-group, right-group, actions, bottom-bar-wrapper */
 .prompt-group, .right-group, .actions, .bottom-bar-wrapper { display: none !important; }
 
+/* Sidebar tab styles */
+.sidebar-tab {
+  background: #232323;
+  color: #fff;
+  font-family: 'Inter', 'Roboto', 'Montserrat', system-ui, Arial, sans-serif;
+  font-size: 1.08rem;
+  padding: 14px 20px;
+  margin: 0 16px 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sidebar-tab:hover {
+  background: #313131;
+  color: #7b3aed;
+  box-shadow: 0 4px 16px rgba(123,58,237,0.10);
+}
+
+/* Sidebar toggle button (hamburger) styles */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 1201;
+  background: #232323;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.sidebar-toggle:active, .sidebar-toggle:focus {
+  background: #313131;
+  outline: none;
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 1200;
+}
+
 /* Responsive styles for mobile screens */
 @media (max-width: 700px) {
-  .sidebar {
+  /*.sidebar {
     width: 0 !important;
     min-width: 0 !important;
     overflow: hidden !important;
     border: none !important;
     transition: width 0.3s;
-  }
+  }*/
   .main-content {
     width: 100vw !important;
     padding-left: 0 !important;
@@ -222,5 +328,27 @@ body {
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
+  }
+  .sidebar-toggle {
+    display: flex;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background: #181818;
+    z-index: 1300;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+    border-right: 1px solid #222;
+  }
+  .sidebar.sidebar-open {
+    transform: translateX(0%);
+  }
+  .sidebar-overlay.active {
+    display: block;
   }
 }

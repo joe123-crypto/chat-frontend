@@ -6,29 +6,43 @@
   <!-- Ensures proper rendering and touch zooming on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Media Dashboard Template</title>
+  <!-- Import Inter font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Import Font Awesome for send icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- Link to the external CSS stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Mobile sidebar toggle button (hamburger) -->
+  <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Open sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <!-- Overlay for mobile sidebar -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
   <div class="container">
     <!-- Sidebar section (currently empty, can be used for navigation or tools) -->
     <aside class="sidebar"></aside>
     <main class="main-content">
-      <!-- Bottom bar containing input and controls -->
-      <div class="bottom-bar">
-        <div class="bar-bottom">
-          <!-- Plus icon for adding or generating new content -->
-          <span class="plus-circle">+</span>
-          <!-- Prompt text for user guidance -->
-          <input id="main-text" class="prompt" type="textarea" placeholder="Type something to generate">
-        </div>
-        <div class="bar-controls">
-          <!-- Action buttons for different media options and settings -->
-          <button class="send-btn"><span class="arrow">↑</span></button>
-          <!-- Status dot indicator -->
+      <div id="container">
+        <!-- Status indicator above the bottom bar -->
+        <div id="status-indicator" class="status-indicator" style="display:none;">Status</div>
+        <!-- Bottom bar containing input and controls -->
+        <div class="bottom-bar">
+          <div class="bar-bottom">
+            <!-- Plus icon for adding or generating new content -->
+            <span class="plus-circle">+</span>
+            <!-- Prompt text for user guidance -->
+            <textarea id="main-text" class="prompt" placeholder="Type something to generate" rows="1"></textarea>
+          </div>
+          <div class="bar-controls">
+            <!-- Action buttons for different media options and settings -->
+            <button class="send-btn" onclick="sendM()"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
         </div>
       </div>
     </main>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
