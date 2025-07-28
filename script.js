@@ -13,7 +13,7 @@ function sendM(){
 //    Lpannel = document.insertE
 //}
 async function sendMessage(text) {
-    const url = "http://localhost:8080/api/chats/"//"https://cors-anywhere.herokuapp.com/https://docker-ai-agent-python.onrender.com/api/chats/";
+    const url = "https://docker-ai-agent-python.onrender.com/api/chats/";
 
     try {
         const response = await fetch(url, {
