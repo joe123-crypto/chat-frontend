@@ -2,11 +2,48 @@
 body {
   margin: 0;
   padding: 0;
-  background: #111;
+  /* Set a modern dark abstract Unsplash background image */
+  background: #111 url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
   color: #fff;
   font-family: system-ui, 'Segoe UI', Arial, sans-serif;
+  position: relative;
+  animation: bgMove 30s linear infinite;
 }
-
+@keyframes bgMove {
+  0% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 60% 55%;
+  }
+}
+/* Add a dark overlay for readability */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, rgba(17,17,17,0.6) 60%, rgba(123,58,237,0.2) 100%);
+  z-index: 0;
+  pointer-events: none;
+  animation: overlayFade 8s ease-in-out infinite alternate;
+}
+@keyframes overlayFade {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+/* Make main containers transparent to show background image */
+.container, .main-content, .sidebar {
+  background: transparent !important;
+}
+.container, .main-content, .sidebar, #container, .bottom-bar, .status-indicator {
+  position: relative;
+  z-index: 1;
+}
 /* Main container uses flex layout to arrange sidebar and main content */
 .container {
   display: flex;
@@ -229,6 +266,23 @@ body {
   opacity: 0.96;
   transition: background 0.18s, color 0.18s, opacity 0.18s;
   pointer-events: none;
+}
+
+/* Spinner animation for status-indicator */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid #7b3aed;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Hide unused legacy classes */

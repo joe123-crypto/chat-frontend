@@ -13,7 +13,7 @@ function sendM(){
 //    Lpannel = document.insertE
 //}
 async function sendMessage(text) {
-    const url = "http://localhost:8080/api/chats/"//"https://cors-anywhere.herokuapp.com/https://docker-ai-agent-python.onrender.com/api/chats/";
+    const url = "https://docker-ai-agent-python.onrender.com/api/chats/";
 
     try {
         const response = await fetch(url, {
@@ -66,6 +66,15 @@ if (mainText) {
         this.style.height = 'auto'; // Reset height
         this.style.height = (this.scrollHeight) + 'px'; // Set to scrollHeight
     });
+    // Listen for Enter key to send message
+    mainText.addEventListener('keydown', function(e) {
+        // If Enter is pressed without Shift, send the message
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent newline
+            sendM(); // Send the message
+        }
+        // If Shift+Enter, allow newline (default behavior)
+    });
 }
 
 // Mobile sidebar toggle and overlay logic
@@ -105,7 +114,20 @@ if (sidebarToggle && sidebar && sidebarOverlay) {
 function showStatus(text) {
     const statusDiv = document.getElementById('status-indicator');
     if (!statusDiv) return;
-    statusDiv.textContent = text;
+    // Remove any existing spinner
+    const existingSpinner = statusDiv.querySelector('.spinner');
+    if (existingSpinner) existingSpinner.remove();
+    if (text === 'Thinking...') {
+        // Create spinner element
+        const spinner = document.createElement('span');
+        spinner.className = 'spinner';
+        statusDiv.textContent = '';
+        statusDiv.appendChild(spinner);
+        // Add the text after the spinner
+        statusDiv.appendChild(document.createTextNode('Thinking...'));
+    } else {
+        statusDiv.textContent = text;
+    }
     statusDiv.style.display = 'block';
     if (text === 'Finished') {
         setTimeout(() => {
